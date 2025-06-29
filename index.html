@@ -1,31 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Chart.js 1.0.2 - Enlil XSS PoC</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <meta charset="UTF-8">
+    <title>CSP Missing - PoC by Enlil</title>
 </head>
 <body>
-  <canvas id="myChart" width="400" height="200"></canvas>
+    <h2>🚨 PoC: Missing Content Security Policy</h2>
+    <p>
+        This page demonstrates that when no CSP is present, inline JavaScript is executed.
+        If you see an alert, the browser has run JavaScript without restriction.
+    </p>
 
-  <script>
-  
-    window.onload = function() {
-      alert("🚨 Enlil: This site is vulnerable to XSS!");
-    };
-
- 
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var data = {
-      labels: ["Red", "Blue", "Yellow"],
-      datasets: [{
-        label: "Sample Data",
-        data: [10, 20, 5],
-        fillColor: "rgba(220,220,220,0.5)",
-        strokeColor: "rgba(220,220,220,0.8)"
-      }]
-    };
-    var myBarChart = new Chart(ctx).Bar(data);
-  </script>
+    <script>
+        alert("🚨 Enlil: This site has NO CSP - Inline JS executed!");
+    </script>
 </body>
 </html>
