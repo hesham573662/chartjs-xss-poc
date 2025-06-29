@@ -14,13 +14,20 @@
     var data = {
       labels: ["Red", "Blue", "Yellow"],
       datasets: [{
-        label: "Malicious Dataset",
+        label: "XSS Dataset",
         data: [12, 19, 3],
-        tooltipTemplate: "<script>alert('XSS by tooltipTemplate')</script>"
+        fillColor: "rgba(220,220,220,0.5)",
+        strokeColor: "rgba(220,220,220,0.8)",
+        highlightFill: "rgba(220,220,220,0.75)",
+        highlightStroke: "rgba(220,220,220,1)"
       }]
     };
 
-    var myBarChart = new Chart(ctx).Bar(data);
+    var options = {
+      multiTooltipTemplate: "<script>alert('XSS PoC from tooltip')</script>"
+    };
+
+    var myBarChart = new Chart(ctx).Bar(data, options);
   </script>
 </body>
 </html>
